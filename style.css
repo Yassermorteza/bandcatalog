@@ -1,0 +1,73 @@
+html,
+body,
+h1, h2, h3, h4, h5, h6, section
+{
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: rgb(210, 210, 190);
+}
+
+header {
+  padding: 1.2%;
+  color: rgb(255,255,255);
+  background: rgb(150, 160, 180);
+  font-size: 1.5rem;
+}
+
+main{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section {
+  width: 25%;
+}
+
+section header {
+  background-color: rgba(210,210,190, 0.2);
+  margin: 2%;
+  font-size: 1rem;
+  color: #000;
+}
+
+section:hover {
+  background-color: rgb(255, 250, 245);
+}
+
+ul {
+  list-style: circle;
+}
+
+section h1,
+ h3 {
+  margin: 4% ;
+}
+
+p {
+  margin: 5%;
+}
+
+@media (max-width: 680px ){
+
+  section {
+    width: 50%;
+    }
+}
+
+@media (max-width: 320px) {
+
+  section {
+    width: 100%;
+  }
+}
+
+
+
+
