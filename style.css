@@ -19,6 +19,16 @@ header {
   color: rgb(255,255,255);
   background: rgb(150, 160, 180);
   font-size: 1.5rem;
+  position: relative;
+}
+
+input {
+  float: right;
+  padding: 0.3%;
+  position: absolute;
+  right: 6%;
+  top: 30%;
+  cursor: pointer;
 }
 
 main{

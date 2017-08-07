@@ -1,6 +1,6 @@
-var url = 'band.json';
+var bandsJSONUrl = 'band.json';
 var tagMain = document.querySelector('main');
-
+var haeder = document.getElementById('page-header')
 function loadJson(url){
   fetch(url).then(function(response){
       return response.json();
@@ -12,7 +12,7 @@ function loadJson(url){
   });
 }
 
-loadJson(url);
+loadJson(bandsJSONUrl);
 
 function sortByName(a, b){
   if (a.name > b.name){
@@ -32,6 +32,73 @@ function sortByReleaseYear(a, b){
   }
   return 0
 }
+
+
+ //Dynamic version with map()...====>>
+
+function whenJsonLoaded(bands){
+
+  var searchBarValue = search.value;
+  tagMain.textContent = '';
+
+  var completeListOfHtml = bands.filter(function(band) {
+
+
+          if(band.name.toLowerCase().indexOf(searchBarValue.toLowerCase()) > -1 )
+             return true;
+
+  }).sort(sortByName).map(function(band, index){
+
+      var memberName ='';
+      var albumsTitle ='';
+      var albumsReleaseYear ='';
+      band.members = band.members.sort(sortByName);
+      band.albums = band.albums.sort(sortByReleaseYear);
+
+      for(var i=0; i < band.members.length; i++){
+
+         memberName += "<li>" + band.members[i].name + ','
+                      + band.members[i].instrument + "</li>";
+      }
+
+      for(var i=0; i < band.albums.length; i++){
+
+         albumsTitle += "<li>" +band.albums[i].title + ','
+                       + band.albums[i].releaseYear + "</li>";
+      }
+
+    return `<section>
+     <header>
+      <h1 id="band-8">${band.name}</h1>
+     </header>
+     <h3>${band.genre}</h3>
+     <h3>Members</h3>
+     <ul>
+       ${memberName}
+     </ul>
+     <h3>Albums</h3>
+     <ul>
+       ${albumsTitle}
+    </ul>
+   </section>`
+
+  }).join('');
+
+  tagMain.innerHTML = completeListOfHtml;
+}
+
+
+var search = document.getElementById("search-band");
+
+search.addEventListener("keyup", function (){
+
+    loadJson(bandsJSONUrl);
+});
+
+
+
+
+
 
 // function whenJsonLoaded(band){
 //    console.log(band);
@@ -92,55 +159,6 @@ function sortByReleaseYear(a, b){
 //   })
 
 // };
-
-
-
- //Dynamic version with map()...====>>
-
-function whenJsonLoaded(bands){
-
-  tagMain.textContent = '';
-
-  var completeListOfHtml = bands.sort(sortByName).map(function(band, index){
-
-      var memberName ='';
-      var albumsTitle ='';
-      var albumsReleaseYear ='';
-      band.members = band.members.sort(sortByName);
-      band.albums = band.albums.sort(sortByReleaseYear);
-
-      for(var i=0; i < band.members.length; i++){
-
-         memberName += "<li>" + band.members[i].name + ','
-                      + band.members[i].instrument + "</li>";
-      }
-
-      for(var i=0; i < band.albums.length; i++){
-
-         albumsTitle += "<li>" +band.albums[i].title + ','
-                       + band.albums[i].releaseYear + "</li>";
-      }
-
-    return `<section>
-     <header>
-      <h1 id="band-8">${band.name}</h1>
-     </header>
-     <h3>${band.genre}</h3>
-     <h3>Members</h3>
-     <ul>
-       ${memberName}
-     </ul>
-     <h3>Albums</h3>
-     <ul>
-       ${albumsTitle}
-    </ul>
-   </section>`
-
-  }).join('');
-
-  tagMain.innerHTML = completeListOfHtml;
-}
-
 
 
 
