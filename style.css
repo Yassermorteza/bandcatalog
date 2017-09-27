@@ -19,7 +19,34 @@ header {
   color: rgb(255,255,255);
   background: rgb(150, 160, 180);
   font-size: 1.5rem;
+  position: relative;
 }
+
+input {
+  padding: 0.3%;
+  position: absolute;
+  right: 6%;
+  top: 30%;
+  cursor: pointer;
+}
+
+#search-genre {
+  padding: 0.3%;
+  position: absolute;
+  right: 25%;
+  top: 35%;
+  cursor: pointer;
+}
+
+#page-header label {
+  margin: 0;
+  font-size: 1rem;
+  color: #1f2f3f;
+  position: absolute;
+  right: 27%;
+  top: 35%;
+}
+
 
 main{
   display: flex;
